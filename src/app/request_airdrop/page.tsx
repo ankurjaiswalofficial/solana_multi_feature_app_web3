@@ -27,7 +27,7 @@ function RequestAirdrop() {
     const [pubKey, setPubKey] = useState<string | null>(null);
     const amountRef = useRef<HTMLInputElement | null>(null);
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
-    const [dialogContent, setDialogContent] = useState<DialogContentType | null>();
+    const [dialogContent, setDialogContent] = useState<DialogContentType | null>(null);
     const [transferSuccessfull, setTransferSuccessfull] = useState<boolean>(false);
 
     const openDialog = () => setIsDialogOpen(true);

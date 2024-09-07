@@ -52,10 +52,10 @@ function SendToken() {
                         setTransferSuccessfull(true);
                         openDialog();
                     })
-                    .catch(() => {
+                    .catch((e) => {
                         setDialogContent({
                             title: "UhOh :( Token Send Failed",
-                            description: `May be due to dry faucet or any server / api / network error ${amountRef.current?.value} SOL's wasn't transfered to wallet having Public Key: ${remoteRef.current?.value}`
+                            description: `${amountRef.current?.value} SOL's wasn't transfered to wallet having Public Key: ${remoteRef.current?.value}. ERROR Trace: ${e}`
                         });
                         setTransferSuccessfull(false);
                         openDialog();

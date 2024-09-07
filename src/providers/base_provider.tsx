@@ -19,7 +19,6 @@ function BaseProvider({ children }: Readonly<{ children: React.ReactNode }>) {
 
     // Hardcoded Endpoint
     const endpoint = process.env.SOL_DEVNET_URL ?? "https://api.devnet.solana.com"
-
     return (
         <ConnectionProvider endpoint={endpoint}>
             <WalletProvider wallets={[]} autoConnect={true}>

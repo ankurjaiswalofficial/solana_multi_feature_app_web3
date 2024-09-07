@@ -23,17 +23,17 @@ interface InformationDialogProps {
     homeBtn?: boolean
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function InformationDialog({ isOpen, setIsOpen, closeAction, successTrigger, content, homeBtn = true }: Readonly<InformationDialogProps>) {
     return (
         <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
             <AlertDialogContent className="">
                 <AlertDialogHeader>
                     <AlertDialogTitle className="text-white">
-                        {successTrigger && content?.title}
-
+                        {content.title}
                     </AlertDialogTitle>
                     <AlertDialogDescription className="text-neutral-400 text-wrap break-words text-ellipsis break-all">
-                        {successTrigger && content?.description}
+                        {content.description}
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>

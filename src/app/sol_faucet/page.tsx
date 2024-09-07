@@ -27,7 +27,7 @@ function SOLFaucet() {
     const amountRef = useRef<HTMLInputElement | null>(null);
 
     const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
-    const [dialogContent, setDialogContent] = useState<DialogContentType | null>();
+    const [dialogContent, setDialogContent] = useState<DialogContentType | null>(null);
     const [transferSuccessfull, setTransferSuccessfull] = useState<boolean>(false);
 
     const openDialog = () => setIsDialogOpen(true);
@@ -40,8 +40,7 @@ function SOLFaucet() {
                 const pubKey = publickKeyRef.current.value;
                 const connection = new Connection(endpoint);
                 const publicKey = new PublicKey(publickKeyRef.current.value);
-                const signature = await connection.requestAirdrop(publicKey, Number(amountRef.current.value) * LAMPORTS_PER_SOL);
-                await connection.confirmTransaction(signature)
+                await connection.requestAirdrop(publicKey, Number(amountRef.current.value) * LAMPORTS_PER_SOL)
                     .then(() => {
                         setDialogContent({
                             title: "Congrats :) Airdrop Successfull",
