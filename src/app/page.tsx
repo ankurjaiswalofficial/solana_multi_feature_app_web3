@@ -73,7 +73,7 @@ export default function Home() {
 
     useEffect(() => {
         setTimeout(() => toast.toast({
-            title: "Wallet Disconnecting :(",
+            title: "Wallet Not Connected :(",
             description: `Click on Connect or Select Wallet to Reconnect`,
         }), 500)
         // eslint-disable-next-line react-hooks/exhaustive-deps
