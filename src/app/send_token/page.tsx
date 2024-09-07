@@ -61,7 +61,8 @@ function SendToken() {
                         openDialog();
                     });
             } else {
-                toast("SOL Amount can't be 0", {
+                toast({
+                    title: "SOL Amount can't be 0",
                     description: "Zero SOL Amount dosen't make sense"
                 })
             }

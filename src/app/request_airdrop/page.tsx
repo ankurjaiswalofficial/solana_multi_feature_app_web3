@@ -15,12 +15,13 @@ import { ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
-import { toast } from "@/hooks/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import WalletConnectState from "@/components/wallet_connect_state";
 import InformationDialog from "@/components/information_dialog";
 import { DialogContentType } from "../sign_message/page";
 
 function RequestAirdrop() {
+    const toast = useToast();
     const wallet = useWallet();
     const { connection } = useConnection();
     const [pubKey, setPubKey] = useState<string | null>(null);
@@ -54,7 +55,8 @@ function RequestAirdrop() {
                         openDialog();
                     });
             } else {
-                toast("SOL Amount can't be 0", {
+                toast.toast({
+                    title: "SOL Amount can't be 0",
                     description: "Zero SOL Amount dosen't make sense"
                 })
             }

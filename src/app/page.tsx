@@ -19,12 +19,13 @@ import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButtonDynamic, WalletDisconnectButtonDynamic } from "@/components/dynamic/wallet_buttons"
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/hooks/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 import InformationDialog from "@/components/information_dialog";
 import { DialogContentType } from "./sign_message/page";
 
 export default function Home() {
+    const toast = useToast();
     const wallet = useWallet();
     const { connection } = useConnection();
     const [pubKey, setPubKey] = useState<string | null>(null);
@@ -55,21 +56,24 @@ export default function Home() {
                     openDialog();
                 });
         } else {
-            toast("Check Wallet Connection", {
+            toast.toast({
+                title: "Check Wallet Connection",
                 description: `Check if your wallet is connected or not before checking for balance !!`,
             })
         }
     }
 
     useEffect(() => {
-        setTimeout(() => toast("Wallet Connected :)", {
+        setTimeout(() => toast.toast({
+            title: "Wallet Connected :)",
             description: `Wallet Connected Public Key: ${pubKey}`,
         }), 500)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [wallet.connected && pubKey])
 
     useEffect(() => {
-        setTimeout(() => toast("Wallet Disconnecting :(", {
+        setTimeout(() => toast.toast({
+            title: "Wallet Disconnecting :(",
             description: `Click on Connect or Select Wallet to Reconnect`,
         }), 500)
         // eslint-disable-next-line react-hooks/exhaustive-deps

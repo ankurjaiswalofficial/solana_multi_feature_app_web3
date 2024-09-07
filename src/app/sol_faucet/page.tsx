@@ -14,12 +14,13 @@ import { Label } from "@/components/ui/label"
 import { ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
 import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
-import { toast } from "@/hooks/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import WalletConnectState from "@/components/wallet_connect_state";
 import InformationDialog from "@/components/information_dialog";
 import { DialogContentType } from "../sign_message/page";
 
 function SOLFaucet() {
+    const toast = useToast();
     const endpoint = process.env.SOL_DEVNET_URL ?? "https://api.devnet.solana.com"
 
     const publickKeyRef = useRef<HTMLInputElement | null>(null);
@@ -58,7 +59,8 @@ function SOLFaucet() {
                         openDialog();
                     });
             } else {
-                toast("SOL Amount can't be 0", {
+                toast.toast({
+                    title: "SOL Amount can't be 0",
                     description: "Zero SOL Amount dosen't make sense"
                 })
             }

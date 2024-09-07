@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card"
 import MoveToHome from './move_to_home';
 
-function WalletConnectState({ children, active, dev }: Readonly<{ children: ReactNode, active: boolean, dev: boolean }>) {
+function WalletConnectState({ children, active, dev }: Readonly<{ children: ReactNode, active: boolean, dev?: boolean }>) {
     if (active) {
         return (
             <Card className="w-full max-w-sm">

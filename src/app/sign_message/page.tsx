@@ -13,8 +13,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
+import { useToast } from "@/hooks/use-toast";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { toast } from "@/hooks/use-toast";
 import WalletConnectState from "@/components/wallet_connect_state";
 import { Textarea } from "@/components/ui/textarea";
 import { ed25519 } from '@noble/curves/ed25519';
@@ -27,6 +27,7 @@ export type DialogContentType = {
 }
 
 function SignMessage() {
+    const toast = useToast();
     const { publicKey, connected, signMessage } = useWallet();
     const [pubKey, setPubKey] = useState<string | null>(null);
     const msgRef = useRef<HTMLTextAreaElement | null>(null);
@@ -59,7 +60,8 @@ function SignMessage() {
                     openDialog();
                 }
             } else {
-                toast("Message Required", {
+                toast.toast({
+                    title: "Message Required",
                     description: "Message is required without it, makes no sense"
                 })
             }
@@ -100,7 +102,7 @@ function SignMessage() {
             </CardContent>
             <CardFooter>
                 <Button className="w-full" onClick={handleSignMessage}>Sign</Button>
-                <InformationDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} closeAction={closeDialog} content={dialogContent} successTrigger={signSuccessfull} />
+                {dialogContent && <InformationDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} closeAction={closeDialog} content={dialogContent} successTrigger={signSuccessfull} />}
             </CardFooter>
         </WalletConnectState>
     )
